@@ -1,20 +1,20 @@
 package ru.goncharov.memes;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import ru.goncharov.memes.service.LetterService;
-import ru.goncharov.memes.service.impl.RussianAlphabetLetterService;
-import ru.goncharov.memes.utils.OriginalPhrase;
-
-import static org.springframework.boot.SpringApplication.run;
+import org.springframework.context.ApplicationContext;
+import ru.goncharov.memes.common.OriginalPhrase;
+import ru.goncharov.memes.common.Phrase;
+import ru.goncharov.memes.service.BanLetterService;
+import ru.goncharov.memes.service.RussianAlphabetBanLetterService;
 
 @SpringBootApplication
 public class HiRknApplication {
 
     public static void main(final String[] args) {
-        final ConfigurableApplicationContext context = run(HiRknApplication.class, args);
-        final LetterService letterService = context.getBean(RussianAlphabetLetterService.class);
-        final OriginalPhrase phrase = context.getBean(OriginalPhrase.class);
-        letterService.banLetter(phrase.get());
+        final ApplicationContext context = SpringApplication.run(HiRknApplication.class, args);
+        final BanLetterService letterService = context.getBean(RussianAlphabetBanLetterService.class);
+        final Phrase phrase = context.getBean(OriginalPhrase.class);
+        letterService.banLetter(phrase.value());
     }
 }

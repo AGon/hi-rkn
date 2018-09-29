@@ -1,8 +1,6 @@
-package ru.goncharov.memes.utils;
+package ru.goncharov.memes.common;
 
-import static java.lang.String.valueOf;
-
-public class NextLetter {
+public class NextLetter implements Letter {
 
     private final String phrase;
     private final Character letter;
@@ -12,9 +10,10 @@ public class NextLetter {
         this.letter = letter;
     }
 
-    public String get() {
-        final String result = valueOf(letter);
-        new Progress(phrase, result).show();
+    @Override
+    public String value() {
+        final String result = String.valueOf(letter);
+        new ConsoleProgress(phrase, result).show();
         return result;
     }
 }

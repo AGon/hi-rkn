@@ -1,15 +1,16 @@
-package ru.goncharov.memes.utils;
+package ru.goncharov.memes.common;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OriginalPhrase {
+public class OriginalPhrase implements Phrase {
 
     @Value("${phrase}")
     private String phrase;
 
-    public String get() {
+    @Override
+    public String value() {
         return phrase;
     }
 }

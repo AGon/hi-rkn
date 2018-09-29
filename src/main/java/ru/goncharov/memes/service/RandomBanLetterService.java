@@ -1,17 +1,16 @@
-package ru.goncharov.memes.service.impl;
+package ru.goncharov.memes.service;
 
 import org.springframework.stereotype.Service;
-import ru.goncharov.memes.service.LetterService;
-import ru.goncharov.memes.utils.NextLetter;
+import ru.goncharov.memes.common.NextLetter;
 
 import java.util.Random;
 
 @Service
-public class RandomLetterService implements LetterService {
+public class RandomBanLetterService implements BanLetterService {
 
     @Override
     public void banLetter(final String phrase) {
-        final String letter = new NextLetter(phrase, getLetter(phrase)).get();
+        final String letter = new NextLetter(phrase, getLetter(phrase)).value();
         if (phrase.length() > 1) {
             banLetter(phrase.replaceAll(letter, "").trim());
         }
