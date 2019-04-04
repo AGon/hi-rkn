@@ -6,6 +6,8 @@ import ru.goncharov.memes.common.RussianAlphabet;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 @Service
 public class RussianAlphabetBanLetterService implements BanLetterService {
 
@@ -16,7 +18,7 @@ public class RussianAlphabetBanLetterService implements BanLetterService {
     public void banLetter(final String phrase) {
         final String letter = new NextLetter(phrase, getLetter(phrase)).value();
         if (phrase.length() > 2) {
-            final String regex = "(" + letter.toLowerCase() + "|" + letter.toUpperCase() + ")";
+            final String regex = format("(%s|%s)", letter.toLowerCase(), letter.toUpperCase());
             ++index;
             banLetter(phrase.replaceAll(regex, "").trim());
         }
